@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import requests
 
-API_LOGIN_URL = "https://example.com/api/login"  # Here API
-API_REGISTER_URL = "https://example.com/api/register"
+API_LOGIN_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com/auth/login"  # Here API
+API_REGISTER_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com/auth/register"
 
 # send data to API
 def login():
@@ -22,9 +22,8 @@ def login():
 
         data = response.json()  # convert to JSON
 
-        if "token" in data:  # Check to API send back token
+        if "message" in data:  # Check to API send back token
             messagebox.showinfo("Success", "Login successfully!")
-            print(f"Oh, token: {data['token']}")
         else:
             messagebox.showerror("Error", "Incorrect nickname or password!")
 
