@@ -70,6 +70,7 @@ def show_register_window():
 login_window = tk.Tk()
 login_window.title("Login")
 login_window.geometry("300x250")
+login_window.resizable(False, False)
 
 tk.Label(login_window, text="Nickname:").pack(pady=5)
 login_nickname_entry = tk.Entry(login_window, width=30)
@@ -88,8 +89,9 @@ register_button.pack(pady=5)
 # Register window
 register_window = tk.Toplevel(login_window)
 register_window.title("Registration")
-register_window.geometry("300x300")
+register_window.geometry("300x350")
 register_window.withdraw()
+register_window.resizable(False, False)
 
 tk.Label(register_window, text="Email:").pack(pady=5)
 register_email_entry = tk.Entry(register_window, width=30)
