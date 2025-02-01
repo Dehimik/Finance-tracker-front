@@ -1,9 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 import requests
-
-API_LOGIN_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com/auth/login"  # Here API
-API_REGISTER_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com/auth/register"
+from services.api_client import login_request
+from services.api_client import register_request
 
 # send data to API
 def login():
@@ -14,13 +13,8 @@ def login():
         messagebox.showwarning("Error", "Fill all fields!")
         return
 
-    payload = {"nickname": nickname, "password": password}
-
     try:
-        response = requests.post(API_LOGIN_URL, json=payload)
-        response.raise_for_status()  # check HTTP problems
-
-        data = response.json()  # convert to JSON
+        data = login_request(nickname, password)
 
         if "message" in data:  # Check to API send back token
             messagebox.showinfo("Success", "Login successfully!")
@@ -44,11 +38,8 @@ def register():
         messagebox.showerror("Error", "Passwords doesnt match!")
         return
 
-    payload = {"email": email, "nickname": nickname, "password": password}
-
     try:
-        response = requests.post(API_REGISTER_URL, json=payload)
-        response.raise_for_status()
+        data = register_request(email, nickname, password)
         messagebox.showinfo("Success", "Register success! Login now.")
         show_login_window()  # Повертаємося до логіну
 
