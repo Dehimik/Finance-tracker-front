@@ -33,12 +33,6 @@ def delete_account(nickname):
     response.raise_for_status()
     return response.json()
 
-def logout(nickname):
-    payload = {"nickname": nickname}
-    response = requests.post(BASE_URL + "/auth/logout", json = payload)
-    response.raise_for_status()
-    return response.json()
-
 # TRANSACTION ACTIONS
 def create_transaction(nickname, description, category, type, amount, payment_method):
     payload = {"nickname": nickname, "description": description, "category": category, "type": type, "amount": amount, "payment_method": payment_method}

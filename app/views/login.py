@@ -35,6 +35,8 @@ class LoginWindow(tk.Frame):
 
             if "message" in response:
                 messagebox.showinfo("Success", "Login successfully!")
+                self.master.nickname = nickname
+                self.master.show_home()
             else:
                 messagebox.showerror("Error", "Incorrect nickname or password!")
         except requests.exceptions.RequestException as e:
