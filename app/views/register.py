@@ -26,6 +26,7 @@ class RegisterWindow(tk.Frame):
         self.confirm_password_entry = tk.Entry(self, show="*")
         self.confirm_password_entry.pack()
         tk.Button(self, text="Register", command=self.register).pack()
+
     def register(self):
         email = self.email_entry.get()
         nickname = self.nickname_entry.get()
