@@ -11,7 +11,7 @@ class HomeWindow(tk.Frame):
         self.pack()
         self.create_widgets()
     def create_widgets(self):
-        tk.Label(self, text="nickname").pack()
+        tk.Label(self, text="username").pack()
 
         #transactions = get_transactions()
         #for transaction in transactions:

@@ -14,9 +14,9 @@ class RegisterWindow(tk.Frame):
         self.email_entry = tk.Entry(self)
         self.email_entry.pack()
 
-        tk.Label(self, text="Nickname").pack()
-        self.nickname_entry = tk.Entry(self)
-        self.nickname_entry.pack()
+        tk.Label(self, text="Username").pack()
+        self.user_name_entry = tk.Entry(self)
+        self.user_name_entry.pack()
 
         tk.Label(self, text="Password").pack()
         self.password_entry = tk.Entry(self, show="*")
@@ -30,20 +30,20 @@ class RegisterWindow(tk.Frame):
 
     def register(self):
         email = self.email_entry.get()
-        nickname = self.nickname_entry.get()
+        user_name = self.user_name_entry.get()
         password = self.password_entry.get()
         confirm_password = self.confirm_password_entry.get()
 
-        if not email or not nickname or not password or not confirm_password:
+        if not email or not user_name or not password or not confirm_password:
             messagebox.showwarning("Error", "Fill all fields!")
             return
         if password != confirm_password:
             messagebox.showerror("Error", "Passwords doesnt match!")
             return
         try:
-            response = register_request(email, nickname, password)
+            response = register_request(email, user_name, password)
 
-            if "message" in response:
+            if "id" in response:
                 messagebox.showinfo("Success", "Register success! Login now.")
             else:
                 messagebox.showerror("Error", "Email already exists!")
