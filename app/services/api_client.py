@@ -1,5 +1,3 @@
-import email
-
 import requests
 
 BASE_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com"
