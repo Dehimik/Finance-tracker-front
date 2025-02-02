@@ -20,9 +20,10 @@ class LoginWindow(tk.Frame):
         self.password_entry.pack()
 
         tk.Button(self, text="Login", command=self.login).pack()
+        tk.Button(self, text="Registration", command=self.go_to_register).pack()
 
     def login(self):
-        nickname = self.nicknameentry.get()
+        nickname = self.nickname_entry.get()
         password = self.password_entry.get()
 
         if not nickname or not password:
@@ -38,3 +39,6 @@ class LoginWindow(tk.Frame):
                 messagebox.showerror("Error", "Incorrect nickname or password!")
         except requests.exceptions.RequestException as e:
             messagebox.showerror("Error", f"I cant move it move it anymore: {e}")
+
+    def go_to_register(self):
+        self.master.show_register()

@@ -26,6 +26,7 @@ class RegisterWindow(tk.Frame):
         self.confirm_password_entry = tk.Entry(self, show="*")
         self.confirm_password_entry.pack()
         tk.Button(self, text="Register", command=self.register).pack()
+        tk.Button(self, text="Login", command=self.go_to_login).pack()
 
     def register(self):
         email = self.email_entry.get()
@@ -47,4 +48,7 @@ class RegisterWindow(tk.Frame):
             else:
                 messagebox.showerror("Error", "Email already exists!")
         except requests.exceptions.RequestException as e:
-            messagebox.showerror("Error", f"Registration unsuccessfully: {e}")
+            messagebox.showerror("Error", f"Registration unsuccessfully: {e}")\
+
+    def go_to_login(self):
+        self.master.show_login()
