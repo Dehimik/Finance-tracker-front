@@ -11,7 +11,7 @@ class MainApp(tk.Tk):
         self.title("Finance Tracker")
         self.geometry("400x300")
         self.current_frame = None
-        self.show_home()
+        self.show_login()
 
     def show_login(self):
         self.switch_frame(LoginWindow)
