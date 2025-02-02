@@ -38,7 +38,7 @@ class LoginWindow(tk.Frame):
             else:
                 messagebox.showerror("Error", "Incorrect nickname or password!")
         except requests.exceptions.RequestException as e:
-            messagebox.showerror("Error", f"I cant move it move it anymore: {e}")
+            messagebox.showerror("Error", f"Shit happens: {e}")
 
     def go_to_register(self):
         self.master.show_register()

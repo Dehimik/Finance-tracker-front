@@ -5,7 +5,7 @@ from views.register import RegisterWindow
 class MainApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("My App")
+        self.title("Finance Tracker")
         self.geometry("400x300")
         self.current_frame = None
         self.show_login()
@@ -17,7 +17,7 @@ class MainApp(tk.Tk):
         self.switch_frame(RegisterWindow)
 
     def switch_frame(self, frame_class):
-        """Очищає поточний фрейм та завантажує новий."""
+        # Clear frame and switch it to other frame
         if self.current_frame is not None:
             self.current_frame.destroy()
         self.current_frame = frame_class(self)
