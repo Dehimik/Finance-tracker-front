@@ -10,7 +10,9 @@ class MainApp(tk.Tk):
         super().__init__()
         self.title("Finance Tracker")
         self.geometry("400x300")
+        self.resizable(False, False)
         self.current_frame = None
+        self.user_id = None
         self.show_login()
 
     def show_login(self):
@@ -20,16 +22,16 @@ class MainApp(tk.Tk):
         self.switch_frame(RegisterWindow)
 
     def show_home(self):
-        self.switch_frame(HomeWindow)
+        self.switch_frame(HomeWindow, self.user_id)
 
     def show_profile(self):
-        self.switch_frame(ProfileWindow)
+        self.switch_frame(ProfileWindow, self.user_id)
 
-    def switch_frame(self, frame_class):
+    def switch_frame(self, frame_class, *args):
         # Clear frame and switch it to other frame
         if self.current_frame is not None:
             self.current_frame.destroy()
-        self.current_frame = frame_class(self)
+        self.current_frame = frame_class(self, *args)
         self.current_frame.pack()
 
 if __name__ == "__main__":

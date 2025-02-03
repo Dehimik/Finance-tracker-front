@@ -33,9 +33,9 @@ class LoginWindow(tk.Frame):
         try:
             response = login_request(user_name, password)
 
-            if "message" in response:
-                messagebox.showinfo("Success", "Login successfully!")
-                self.master.user_name = user_name
+            if response.get("status") == 200:
+                user_id = response.get("data", {}).get("user_id")
+                self.master.user_id = user_id
                 self.master.show_home()
             else:
                 messagebox.showerror("Error", "Incorrect username or password!")

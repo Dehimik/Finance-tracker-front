@@ -15,9 +15,9 @@ def register_request(email, user_name, password):
     response.raise_for_status()
     return response.json()
 
-def get_user(user_name):
-    payload = {"nickname": user_name}
-    response = requests.get(BASE_URL + f"/auth/user/{user_name}", json = payload)
+def get_user(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL + f"/auth/user/{user_id}", json = payload)
     response.raise_for_status()
     return response.json()
 
@@ -40,9 +40,9 @@ def create_transaction(user_name, description, category, type, amount, payment_m
     response.raise_for_status()
     return response.json()
 
-def get_transactions(user_name):
-    payload = {"user_name": user_name}
-    response = requests.get(BASE_URL + "/transactions/", json = payload)
+def get_transactions(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL + f"/transactions/?user_id={user_id}", json = payload)
     response.raise_for_status()
     return response.json()
 
