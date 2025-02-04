@@ -12,7 +12,7 @@ class MainApp(tk.Tk):
         super().__init__()
         self.title("Finance Tracker")
         self.geometry("400x300")
-        self.resizable(False, False)
+        #self.resizable(False, False)
         self.current_frame = None
         self.user_id = None
         default_styles(self)

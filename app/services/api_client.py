@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_URL = os.getenv("BASE_URL")
-print(BASE_URL)
 
 # USER ACTIONS
 def login_request(user_name, password):
@@ -93,7 +92,7 @@ def trans_filet_payM(user_id, payment_method):
     response.raise_for_status()
     return response.json()
 
-  # Transactions total
+  # Total
 def trans_total_week(user_id):
     payload = {"user_id": user_id}
     response = requests.get(BASE_URL+f"/transactions/total/weekly", json = payload)

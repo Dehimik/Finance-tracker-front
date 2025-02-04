@@ -18,14 +18,36 @@ class HomeWindow(tk.Frame):
     def create_widgets(self, user_id):
         tk.Button(self, text = "Profile", command = self.open_profile).pack()
         tk.Label(self, text="BALANCE HERE").pack()
+        tk.Button(self, text="New transaction").pack()
+
+        self.canvas = tk.Canvas(self, bg="#f5f5f5")
+        self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
+        self.scrollable_frame = tk.Frame(self.canvas, bg="#f5f5f5")
+
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+        )
+
+        self.window = self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw", width=self.canvas.winfo_width())
+
+        self.canvas.configure(yscrollcommand=self.scrollbar.set)
+
+        self.canvas.pack(side="right", fill="both", expand=True)
+        self.scrollbar.pack(side="right", fill="y")
 
         transactions = get_transactions(user_id).get("data", {}).get("transactions",[])
 
         if self.count_transactions(user_id) > 0:
             for transaction in transactions:
-             self.create_transaction_card(self, transaction)
+             self.create_transaction_card(self.scrollable_frame, transaction)
         else:
             messagebox.showerror("Error", "This user doesnt have any transactions!")
+
+        self.bind("<Configure>", self.update_canvas_width)
+
+    def update_canvas_width(self, event=None):
+        self.canvas.itemconfig(self.window, width=self.winfo_width())
 
     def open_profile(self):
         self.master.show_profile()
