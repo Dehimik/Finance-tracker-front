@@ -62,3 +62,46 @@ def delete_transaction(transaction_id):
     response = requests.delete(BASE_URL + f"/transactions/{transaction_id}", json = payload)
     response.raise_for_status()
     return response.json()
+  # Sort
+def sort_trans_amount_SB(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL+f"/transactions/sort/amount", json = payload)
+    response.raise_for_status()
+    return response.json()
+
+def sort_trans_amount_BS(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL+f"/transactions/sort/amount/reverse", json = payload)
+    response.raise_for_status()
+    return response.json()
+  # Filter
+def trans_filet_cat(user_id, category):
+    payload = {"user_id": user_id, "category": category}
+    response = requests.get(BASE_URL+f"/transactions/filter/category", json = payload)
+    response.raise_for_status()
+    return response.json()
+
+def trans_filet_type(user_id, type):
+    payload = {"user_id": user_id, "type": type}
+    response = requests.get(BASE_URL+f"/transactions/filter/type", json = payload)
+    response.raise_for_status()
+    return response.json()
+
+def trans_filet_payM(user_id, payment_method):
+    payload = {"user_id": user_id, "payment_method": payment_method}
+    response = requests.get(BASE_URL+f"/transactions/filter/payment_method", json = payload)
+    response.raise_for_status()
+    return response.json()
+
+  # Transactions total
+def trans_total_week(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL+f"/transactions/total/weekly", json = payload)
+    response.raise_for_status()
+    return  response.json()
+
+def trans_total_month(user_id):
+    payload = {"user_id": user_id}
+    response = requests.get(BASE_URL+f"/transactions/total/monthly", json = payload)
+    response.raise_for_status()
+    return  response.json()
