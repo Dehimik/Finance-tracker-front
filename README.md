@@ -44,19 +44,14 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-  3. **Install Dependencies:**
-```
-pip install -r requirements.txt
-```
-
-  4. **Environment Variables:**
+  3. **Environment Variables:**
 
 Create a .env file in the root directory with the following variable:
 ```
 API_URL=./path/to/your/api.com
 ```
 
-  5. **Pre-commit Hooks Setup (Optional):**
+  4. **Pre-commit Hooks Setup (Optional):**
 
 Installation:
 ```
