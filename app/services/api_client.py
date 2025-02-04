@@ -1,6 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-BASE_URL = "https://financial-tracker-back-pt2-67e49ab4fe24.herokuapp.com"
+load_dotenv()
+
+BASE_URL = os.getenv("BASE_URL")
+print(BASE_URL)
 
 # USER ACTIONS
 def login_request(user_name, password):

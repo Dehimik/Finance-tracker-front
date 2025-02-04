@@ -34,7 +34,7 @@ class HomeWindow(tk.Frame):
         if not isinstance(transaction, dict):
             messagebox.showerror("Error: transaction is not dict!", transaction)
             return
-        #Take info from transaction
+        # Take info from transaction
         category = transaction.get("category")
         description = transaction.get("description")
         created_at = format_date_timeWithHMp(transaction.get("created_at"))
