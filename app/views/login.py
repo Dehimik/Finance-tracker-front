@@ -3,12 +3,14 @@ from tkinter import messagebox
 import requests
 
 from app.services.api_client import login_request
+from app.assets.styles.styles import default_styles
 
 class LoginWindow(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.pack()
         self.create_widgets()
+        default_styles(self)
 
     def create_widgets(self):
         tk.Label(self, text="Username").pack()

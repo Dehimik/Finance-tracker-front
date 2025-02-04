@@ -5,6 +5,8 @@ from views.login import LoginWindow
 from views.register import RegisterWindow
 from views.home import HomeWindow
 
+from assets.styles.styles import default_styles
+
 class MainApp(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -13,6 +15,7 @@ class MainApp(tk.Tk):
         self.resizable(False, False)
         self.current_frame = None
         self.user_id = None
+        default_styles(self)
         self.show_login()
 
     def show_login(self):

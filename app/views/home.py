@@ -7,15 +7,15 @@ from app.services.api_client import get_transactions
 from app.services.api_client import update_transaction
 from app.services.api_client import delete_transaction
 from app.assets.formats.dateformats import format_date_timeWithHMp
+from app.assets.styles.styles import default_styles
 
 class HomeWindow(tk.Frame):
     def __init__(self, master, user_id):
         super().__init__(master)
         self.pack()
         self.create_widgets(user_id)
+        default_styles(self)
     def create_widgets(self, user_id):
-        tk.Label(self, text=f"{user_id}").pack()
-
         tk.Button(self, text = "Profile", command = self.open_profile).pack()
         tk.Label(self, text="BALANCE HERE").pack()
 

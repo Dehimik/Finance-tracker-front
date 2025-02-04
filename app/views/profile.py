@@ -5,12 +5,14 @@ from app.services.api_client import get_user
 from app.services.api_client import update_account
 from app.services.api_client import delete_account
 from app.assets.formats.dateformats import format_date_dbY
+from app.assets.styles.styles import default_styles
 
 class ProfileWindow(tk.Frame):
     def __init__(self, master, user_id):
         super().__init__(master)
         self.pack()
         self.create_widgets(user_id)
+        default_styles(self)
 
     def create_widgets(self, user_id):
         user = get_user(user_id)

@@ -3,12 +3,15 @@ from tkinter import messagebox
 import requests
 
 from app.services.api_client import register_request
+from app.assets.styles.styles import default_styles
 
 class RegisterWindow(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.pack()
         self.create_widgets()
+        default_styles(self)
+
     def create_widgets(self):
         tk.Label(self, text="Email").pack()
         self.email_entry = tk.Entry(self)
