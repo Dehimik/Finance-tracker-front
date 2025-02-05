@@ -5,6 +5,8 @@ import requests
 from app.services.api_client import register_request
 from app.assets.styles.styles import default_styles
 
+from app.assets.validators.validator import valid_email
+
 class RegisterWindow(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
@@ -37,6 +39,9 @@ class RegisterWindow(tk.Frame):
         password = self.password_entry.get()
         confirm_password = self.confirm_password_entry.get()
 
+        if not valid_email(email):
+            messagebox.showwarning("Warning!", "Email must be example@some.some")
+            return
         if not email or not user_name or not password or not confirm_password:
             messagebox.showwarning("Error", "Fill all fields!")
             return
