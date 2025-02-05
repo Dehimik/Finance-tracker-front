@@ -5,6 +5,8 @@ from views.login import LoginWindow
 from views.register import RegisterWindow
 from views.home import HomeWindow
 from views.profile_edit import ProfileEdit
+from views.new_transaction import TransactionNew
+from views.edit_transaction import TransactionEdit
 
 from assets.styles.styles import default_styles
 
@@ -15,6 +17,7 @@ class MainApp(tk.Tk):
         self.geometry("500x300")
         self.current_frame = None
         self.user_id = None
+        self.trans_id = None
         default_styles(self)
         self.show_login()
 
@@ -32,6 +35,12 @@ class MainApp(tk.Tk):
 
     def show_edit_profile(self):
         self.switch_frame(ProfileEdit, self.user_id)
+
+    def show_new_trans(self):
+        self.switch_frame(TransactionNew, self.user_id)
+
+    def show_edit_trans(self):
+        self.switch_frame(TransactionEdit, self.trans_id)
 
     def switch_frame(self, frame_class, *args):
         # Clear frame and switch it to other frame

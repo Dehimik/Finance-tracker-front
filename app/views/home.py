@@ -64,6 +64,9 @@ class HomeWindow(tk.Frame):
     def open_profile(self):
         self.master.show_profile()
 
+    def open_new_trans(self):
+        self.master.show_new_trans()
+
     def create_transaction_card(self, parent, transaction):
         if not isinstance(transaction, dict):
             messagebox.showerror("Error: transaction is not dict!", transaction)

@@ -38,8 +38,8 @@ def delete_account(user_name):
     return response.json()
 
 # TRANSACTION ACTIONS
-def create_transaction(user_name, description, category, type, amount, payment_method):
-    payload = {"user_name": user_name, "description": description, "category": category, "type": type, "amount": amount, "payment_method": payment_method}
+def create_transaction(user_id, description, category, type_ie, amount, payment_method):
+    payload = {"user_id": user_id, "description": description, "category": category, "type": type_ie, "amount": amount, "payment_method": payment_method}
     response = requests.post(BASE_URL + "/transactions/", json = payload)
     response.raise_for_status()
     return response.json()
