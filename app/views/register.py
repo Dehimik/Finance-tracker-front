@@ -55,7 +55,7 @@ class RegisterWindow(tk.Frame):
         try:
             response = register_request(email, user_name, password)
 
-            if "id" in response:
+            if response.get("status") == 200:
                 messagebox.showinfo("Success", "Register success! Login now.")
             else:
                 messagebox.showerror("Error", "Email already exists!")

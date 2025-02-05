@@ -14,7 +14,7 @@ def login_request(user_name, password):
     return response.json()
 
 def register_request(email, user_name, password):
-    payload = {"email": email, "user_name": user_name, "password": password}
+    payload = {"user_name": user_name, "email": email, "password": password}
     response = requests.post(BASE_URL + "/auth/register", json = payload)
     response.raise_for_status()
     return response.json()
