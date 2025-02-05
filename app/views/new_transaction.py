@@ -13,23 +13,23 @@ class TransactionNew(tk.Frame):
         default_styles(self)
 
     def create_widgets(self, user_id):
-        tk.Label(self, text="Description")
+        tk.Label(self, text="Description").pack()
         self.desc_enty = tk.Entry(self)
         self.desc_enty.pack()
 
-        tk.Label(self, text="Category")
+        tk.Label(self, text="Category").pack()
         self.cat_enty = tk.Entry(self)
         self.cat_enty.pack()
 
-        tk.Label(self, text="Type(income/expence)")
+        tk.Label(self, text="Type(income/expence)").pack()
         self.type_enty = tk.Entry(self)
         self.type_enty.pack()
 
-        tk.Label(self, text="Amount")
+        tk.Label(self, text="Amount").pack()
         self.amount_enty = tk.Entry(self)
         self.amount_enty.pack()
 
-        tk.Label(self, text="Payment method(cash/card)")
+        tk.Label(self, text="Payment method(cash/card)").pack()
         self.pay_enty = tk.Entry(self)
         self.pay_enty.pack()
 
@@ -43,7 +43,7 @@ class TransactionNew(tk.Frame):
         payment_method = self.pay_enty.get()
 
         try:
-            response = create_transaction(user_id, description, category, type_ie, amount, payment_method)
+            response = create_transaction(user_id, description, category, type_ie, float(amount), payment_method)
             if response.get("status") == 200:
                 messagebox.showinfo("Success!", "Transaction successfully added!")
                 self.master.trans_id = response.get("data", {}).get("transaction_id")
