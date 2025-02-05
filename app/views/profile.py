@@ -1,9 +1,6 @@
 import tkinter as tk
-from datetime import datetime
 
 from app.services.api_client import get_user
-from app.services.api_client import update_account
-from app.services.api_client import delete_account
 from app.assets.formats.dateformats import format_date_dbY
 from app.assets.styles.styles import default_styles
 

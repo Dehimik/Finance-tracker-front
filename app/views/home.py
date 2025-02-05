@@ -3,10 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from app.services.api_client import get_user
-from app.services.api_client import create_transaction
 from app.services.api_client import get_transactions
-from app.services.api_client import update_transaction
-from app.services.api_client import delete_transaction
 from app.assets.formats.dateformats import format_date_timeWithHMp
 from app.assets.styles.styles import default_styles
 
