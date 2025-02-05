@@ -44,10 +44,11 @@ class TransactionNew(tk.Frame):
 
         try:
             response = create_transaction(user_id, description, category, type_ie, float(amount), payment_method)
+            print(response)
             if response.get("status") == 200:
                 messagebox.showinfo("Success!", "Transaction successfully added!")
                 self.master.trans_id = response.get("data", {}).get("transaction_id")
-                self.show_home()
+                self.master.show_home()
         except requests.exceptions.RequestException as e:
             messagebox.showerror("Error", f"Shit happens: {e}")
 

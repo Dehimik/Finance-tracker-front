@@ -40,7 +40,7 @@ def delete_account(user_name):
 # TRANSACTION ACTIONS
 def create_transaction(user_id, description, category, type_ie, amount, payment_method):
     payload = {"user_id": user_id, "description": description, "category": category, "type": type_ie, "amount": amount, "payment_method": payment_method}
-    response = requests.post(BASE_URL + "/transactions/", json = payload)
+    response = requests.post(BASE_URL + f"/transactions/?user_id={user_id}", json = payload)
     response.raise_for_status()
     return response.json()
 
