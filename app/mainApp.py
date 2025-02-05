@@ -4,6 +4,7 @@ from app.views.profile import ProfileWindow
 from views.login import LoginWindow
 from views.register import RegisterWindow
 from views.home import HomeWindow
+from views.profile_edit import ProfileEdit
 
 from assets.styles.styles import default_styles
 
@@ -12,7 +13,6 @@ class MainApp(tk.Tk):
         super().__init__()
         self.title("Finance Tracker")
         self.geometry("500x300")
-        #self.resizable(False, False)
         self.current_frame = None
         self.user_id = None
         default_styles(self)
@@ -31,7 +31,7 @@ class MainApp(tk.Tk):
         self.switch_frame(ProfileWindow, self.user_id)
 
     def show_edit_profile(self):
-        self.switch_frame()
+        self.switch_frame(ProfileEdit, self.user_id)
 
     def switch_frame(self, frame_class, *args):
         # Clear frame and switch it to other frame

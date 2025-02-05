@@ -25,9 +25,9 @@ def get_user(user_id):
     response.raise_for_status()
     return response.json()
 
-def update_account(user_name, email, password, currency):
-    payload = {"user_name": user_name, "email": email, "password": password, "currency": currency}
-    response = requests.patch(BASE_URL + "/auth/update", json = payload)
+def update_account(user_id, user_name, email, password, currency):
+    payload = {"user_id": user_id, "user_name": user_name, "email": email, "password": password, "currency": currency}
+    response = requests.patch(BASE_URL + f"/auth/update/{user_id}", json = payload)
     response.raise_for_status()
     return response.json()
 
