@@ -11,7 +11,7 @@ class MainApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Finance Tracker")
-        self.geometry("400x300")
+        self.geometry("500x300")
         #self.resizable(False, False)
         self.current_frame = None
         self.user_id = None
@@ -29,6 +29,9 @@ class MainApp(tk.Tk):
 
     def show_profile(self):
         self.switch_frame(ProfileWindow, self.user_id)
+
+    def show_edit_profile(self):
+        self.switch_frame()
 
     def switch_frame(self, frame_class, *args):
         # Clear frame and switch it to other frame

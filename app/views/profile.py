@@ -25,6 +25,7 @@ class ProfileWindow(tk.Frame):
         tk.Label(self, text=f"User currency: {currency}").pack()
         tk.Label(self, text=f"Created at: {created_at}").pack()
 
+        tk.Button(self, text="Edit profile", command=self.open_edit_profile).pack()
         tk.Button(self, text="Back to home", command=self.open_home).pack()
         tk.Button(self, text="Logout", command=self.logout).pack()
 
@@ -33,3 +34,6 @@ class ProfileWindow(tk.Frame):
 
     def open_home(self):
         self.master.show_home()
+
+    def open_edit_profile(self):
+        self.master.show_edit_profile()

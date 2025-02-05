@@ -2,6 +2,7 @@ import re
 import tkinter as tk
 from tkinter import messagebox
 
+from app.services.api_client import get_user
 from app.services.api_client import create_transaction
 from app.services.api_client import get_transactions
 from app.services.api_client import update_transaction
@@ -16,13 +17,14 @@ class HomeWindow(tk.Frame):
         self.create_widgets(user_id)
         default_styles(self)
     def create_widgets(self, user_id):
+
         tk.Button(self, text = "Profile", command = self.open_profile).pack()
-        tk.Label(self, text="BALANCE HERE").pack()
+        tk.Label(self, text=f"Current balance: {get_user(user_id).get("data", {}).get("balance")}").pack()
         tk.Button(self, text="New transaction").pack()
 
-        self.canvas = tk.Canvas(self, bg="#f5f5f5")
+        self.canvas = tk.Canvas(self, bg="#C0C3B0", highlightthickness=0)
         self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = tk.Frame(self.canvas, bg="#f5f5f5")
+        self.scrollable_frame = tk.Frame(self.canvas, bg="#C0C3B0")
 
         self.scrollable_frame.bind(
             "<Configure>",
@@ -34,7 +36,6 @@ class HomeWindow(tk.Frame):
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
 
         self.canvas.pack(side="right", fill="both", expand=True)
-        self.scrollbar.pack(side="right", fill="y")
 
         transactions = get_transactions(user_id).get("data", {}).get("transactions",[])
 
@@ -44,7 +45,18 @@ class HomeWindow(tk.Frame):
         else:
             messagebox.showerror("Error", "This user doesnt have any transactions!")
 
+        self.after(100, self.update_scroll_region)
+
+        self.canvas.bind_all("<MouseWheel>", self.on_mouse_wheel)
+
         self.bind("<Configure>", self.update_canvas_width)
+
+    def update_scroll_region(self):
+        self.scrollable_frame.update_idletasks()
+        self.canvas.config(scrollregion=self.canvas.bbox("all"))
+
+    def on_mouse_wheel(self, event):
+        self.canvas.yview_scroll(-1 * (event.delta // 120), "units")
 
     def update_canvas_width(self, event=None):
         self.canvas.itemconfig(self.window, width=self.winfo_width())
@@ -63,8 +75,8 @@ class HomeWindow(tk.Frame):
         amount = transaction.get("amount")
 
         # Create cool card here
-        card = tk.Frame(parent, bg="#e0e3cf", padx=10, pady=10, width=196, height=48)
-        card.pack(fill="x", padx=15, pady=15)
+        card = tk.Frame(parent, bg="#e0e3cf", padx=10, pady=10)
+        card.pack(fill="x", padx=15, pady=15, expand = True)
 
         # Top: Name+amount
         top_frame = tk.Frame(card, bg="#e0e3cf")
