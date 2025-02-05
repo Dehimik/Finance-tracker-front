@@ -3,12 +3,18 @@ from tkinter import messagebox
 import requests
 
 from app.services.api_client import register_request
+from app.assets.styles.styles import default_styles
+
+from app.assets.validators.validator import valid_email
+from app.assets.validators.validator import valid_password
 
 class RegisterWindow(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.pack()
         self.create_widgets()
+        default_styles(self)
+
     def create_widgets(self):
         tk.Label(self, text="Email").pack()
         self.email_entry = tk.Entry(self)
@@ -34,6 +40,12 @@ class RegisterWindow(tk.Frame):
         password = self.password_entry.get()
         confirm_password = self.confirm_password_entry.get()
 
+        if not valid_email(email):
+            messagebox.showwarning("Warning!", "Email must be example@some.some")
+            return
+        if not valid_password(password):
+            messagebox.showwarning("Warning!", "Password must have at least 8 characters, digits and symbols")
+            return
         if not email or not user_name or not password or not confirm_password:
             messagebox.showwarning("Error", "Fill all fields!")
             return
@@ -43,7 +55,7 @@ class RegisterWindow(tk.Frame):
         try:
             response = register_request(email, user_name, password)
 
-            if "id" in response:
+            if response.get("status") == 200:
                 messagebox.showinfo("Success", "Register success! Login now.")
             else:
                 messagebox.showerror("Error", "Email already exists!")
