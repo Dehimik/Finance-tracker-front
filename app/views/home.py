@@ -20,7 +20,7 @@ class HomeWindow(tk.Frame):
 
         tk.Button(self, text = "Profile", command = self.open_profile).pack()
         tk.Label(self, text=f"Current balance: {get_user(user_id).get("data", {}).get("balance")}").pack()
-        tk.Button(self, text="New transaction").pack()
+        tk.Button(self, text="New transaction", command=self.open_new_trans).pack()
 
         self.canvas = tk.Canvas(self, bg="#C0C3B0", highlightthickness=0)
         self.scrollbar = tk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
