@@ -6,6 +6,7 @@ from app.services.api_client import register_request
 from app.assets.styles.styles import default_styles
 
 from app.assets.validators.validator import valid_email
+from app.assets.validators.validator import valid_password
 
 class RegisterWindow(tk.Frame):
     def __init__(self, master):
@@ -41,6 +42,9 @@ class RegisterWindow(tk.Frame):
 
         if not valid_email(email):
             messagebox.showwarning("Warning!", "Email must be example@some.some")
+            return
+        if not valid_password(password):
+            messagebox.showwarning("Warning!", "Password must have at least 8 characters, digits and symbols")
             return
         if not email or not user_name or not password or not confirm_password:
             messagebox.showwarning("Error", "Fill all fields!")
